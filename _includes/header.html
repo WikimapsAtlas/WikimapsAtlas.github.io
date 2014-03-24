@@ -15,10 +15,10 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="static/bower_components/foundation/css/normalize.css">
-    <link rel="stylesheet" href="static/bower_components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="static/css/main.css">
-    <script src="static/bower_components/modernizr/modernizr.js"></script>
+    <link rel="stylesheet" href="/static/bower_components/foundation/css/normalize.css">
+    <link rel="stylesheet" href="/static/bower_components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/bower_components/modernizr/modernizr.js"></script>
 </head>
 
 <body>
@@ -27,15 +27,13 @@
         <![endif]-->
 
     <header>
-
+<div class="contain-to-grid">
         <!-- Foundation Top Bar -->
         <nav class="top-bar" data-topbar>
             <ul class="title-area">
                 <li class="name">
                     <h1>
-                        <a href="/">Wikimaps:
-                            <b>Atlas</b>
-                        </a>
+                        <a href="/">Wikimaps:<b>Atlas</b></a>
                     </h1>
                 </li>
                 <li class="toggle-topbar menu-icon">
@@ -47,7 +45,7 @@
                 <!-- Right Nav Section -->
                 <ul class="right">
                     <li>
-                        <a href="data.html">Data</a>
+                        <a class="button" href="sources.html">Sources</a>
                     </li>
                 </ul>
 
@@ -60,10 +58,10 @@
                         <a href="https://twitter.com/WikiAtlas">@WikiAtlas</a>
                     </li>
                     <li>
-                        <a href="{{ site.url }}/blog.html">Blog</a>
+                        <a href="/blog">Blog</a>
                     </li>
                 </ul>
             </section>
         </nav>
-        
+        </div>
     </header>
