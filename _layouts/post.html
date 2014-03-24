@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<header class="large-12 columns">
+<h2>{{ page.title }} <small>by {{ page.author }}</small></h2>
+<h3>{{ page.date | %d }}</h3>
+    </header>
+
+<section class="large-8 columns">
+{{ content }}
+    </section>
+
+<footer class="large-12 columns">
+{% include comments.html %}
+    </footer>

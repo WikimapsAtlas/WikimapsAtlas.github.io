@@ -1,14 +1,14 @@
 article{
     margin-top: 2rem!important;
-}
+}    
 
-footer{
+body>footer{
     margin-top: 2rem!important;
     border-top: 1px dotted grey;
     padding-top: 0.5rem!important;
     color:#777;
 }
-footer a{
+body>footer a{
     color: #666;
 }
 
