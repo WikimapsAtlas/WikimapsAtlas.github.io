@@ -1,0 +1,9 @@
+name: "Wikimaps Atlas"
+description: "A Wikimedia Foundation IEG Project"
+
+
+paginate: 10
+
+markdown: rdiscount
+permalink: pretty
+pygments: true
