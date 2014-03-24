@@ -1,7 +1,6 @@
 name: "Wikimaps Atlas"
 description: "A Wikimedia Foundation IEG Project"
 
-url: "localhost:4000"
 
 paginate: 10
 
