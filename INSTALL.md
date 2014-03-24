@@ -20,3 +20,7 @@ Make, Curl, Unzip, [GDAL/OGR](https://www.mapbox.com/tilemill/docs/guides/gdal/)
 
     npm install topojson
 
+# Working with OSM data
+
+See step 1 and 2 of [Mapbox OSM ubuntu quickstart](https://www.mapbox.com/tilemill/docs/guides/osm-bright-ubuntu-quickstart/) 
+
