@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="static/bower_components/foundation/css/normalize.css">
     <link rel="stylesheet" href="static/bower_components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="static/css/main.css">
     <script src="static/bower_components/modernizr/modernizr.js"></script>
 </head>
 
@@ -26,47 +26,53 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-    <!-- Foundation Top Bar -->
-    <nav class="top-bar" data-topbar>
-        <ul class="title-area">
-            <li class="name">
-                <h1>
-                    <a href="/">Wikimaps:<b>Atlas</b></a>
-                </h1>
-            </li>
-            <li class="toggle-topbar menu-icon">
-                <a href="#">Menu</a>
-            </li>
-        </ul>
+    <header>
 
-        <section class="top-bar-section">
-            <!-- Right Nav Section -->
-            <ul class="right">
-                <li class="active">
-                    <a href="#">Right Button Active</a>
+        <!-- Foundation Top Bar -->
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name">
+                    <h1>
+                        <a href="/">Wikimaps:
+                            <b>Atlas</b>
+                        </a>
+                    </h1>
                 </li>
-                <li class="has-dropdown">
-                    <a href="#">Join</a>
-                    <ul class="dropdown">
-                        <li>
-                            <a href="#">Source Code</a>
-                            <a href="#">Issues</a>
-                        </li>
-                    </ul>
+                <li class="toggle-topbar menu-icon">
+                    <a href="#">Menu</a>
                 </li>
             </ul>
 
-            <!-- Left Nav Section -->
-            <ul class="left">
-                <li>
-                    <a href="http://meta.wikimedia.org/wiki/Grants:IEG/Wikimaps_Atlas">About</a>
-                </li>
-                <li>
-                    <a href="https://twitter.com/WikiAtlas">@WikiAtlas</a>
-                </li>
-                <li>
-                    <a href="{{ site.url }}/blog.html">Blog</a>
-                </li>
-            </ul>
-        </section>
-    </nav>
+            <section class="top-bar-section">
+                <!-- Right Nav Section -->
+                <ul class="right">
+                    <li class="active">
+                        <a href="#">Right Button Active</a>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Join</a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="#">Source Code</a>
+                                <a href="#">Issues</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Left Nav Section -->
+                <ul class="left">
+                    <li>
+                        <a href="http://meta.wikimedia.org/wiki/Grants:IEG/Wikimaps_Atlas">About</a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/WikiAtlas">@WikiAtlas</a>
+                    </li>
+                    <li>
+                        <a href="{{ site.url }}/blog.html">Blog</a>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+        
+    </header>

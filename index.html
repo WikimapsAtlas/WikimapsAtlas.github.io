@@ -1,13 +1,24 @@
----
-layout: default
+--- 
+layout: default 
 ---
 
-# Hello World
+<div class="large-5 columns">
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Geo-bounding_boxes-L0.png/601px-Geo-bounding_boxes-L0.png">
+
+    </div>
+
+<div class="large-7 columns">
+<h1>Wikimaps Atlas
+   <div><small>Reference maps for the world</small></div>
+</h1>
+</div>
 
 <ul>
-  {% for post in site.posts %}
+    {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
+        <a href="{{ post.url }}">{{ post.title }}</a>
     </li>
-  {% endfor %}
+    {% endfor %}
 </ul>
+
+
