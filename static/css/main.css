@@ -2,6 +2,16 @@ article{
     margin-top: 2rem!important;
 }
 
+footer{
+    margin-top: 2rem!important;
+    border-top: 1px dotted grey;
+    padding-top: 0.5rem!important;
+    color:#777;
+}
+footer a{
+    color: #666;
+}
+
 h1{
     line-height: 0.8;
     margin: 2rem 0 1rem;
