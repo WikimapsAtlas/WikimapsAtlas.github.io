@@ -21,7 +21,7 @@
 {% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
     
     <link rel="stylesheet" href="{{ relative }}static/bower_components/foundation/css/normalize.css">
-    <link rel="stylesheet" href="/static/bower_components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="{{ BASE_PATH }}/static/bower_components/foundation/css/foundation.css">
     <link rel="stylesheet" href="{{ relative }}static/css/main.css">
     <script src="{{ relative }}static/bower_components/modernizr/modernizr.js"></script>
 </head>
