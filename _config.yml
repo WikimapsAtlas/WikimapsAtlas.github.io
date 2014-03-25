@@ -3,7 +3,9 @@ description: "A Wikimedia Foundation IEG Project"
 
 
 paginate: 10
-BASE_PATH: wikimaps-atlas
+
+url: "planemad.github.io"
+BASE_PATH: "/wikimaps-atlas"
 
 markdown: rdiscount
 permalink: pretty
