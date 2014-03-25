@@ -1,10 +1,10 @@
 name: "Wikimaps Atlas"
 description: "A Wikimedia Foundation IEG Project"
 
-url: "planemad.github.io/wikimaps-atlas"
 
 paginate: 10
+BASE_PATH: wikimaps-atlas
 
 markdown: rdiscount
 permalink: pretty
-pygments: true
+pygments: true push
