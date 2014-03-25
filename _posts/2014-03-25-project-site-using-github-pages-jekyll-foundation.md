@@ -1,6 +1,8 @@
 ---
 title: Project website goes live using Github Pages
 author: planemad
+categories: [website]
+tags: jekyll, github pages, foundation, markdown, website
 layout: post
 ---
 
@@ -12,10 +14,12 @@ It requires a bit of documentation reading to understand how the different piece
 * Understand the basics of [Jekyll](http://jekyllrb.com/docs/home/) folder structure and concepts such as templates, layouts and includes
 * Get familiar with the [Markdown Syntax](http://daringfireball.net/projects/markdown/basics) and how [Liquid Templates](http://docs.shopify.com/themes/liquid-basics) works.
 * Read this great tutorial by [Andrew Munsell](https://www.andrewmunsell.com/tutorials/jekyll-by-example/tutorial) with step by step instructions on putting a jekyll site together
-* [jekyll-bootstrap](https://github.com/plusjade/jekyll-bootstrap) for pieces of reusable code, especially if you want to use [bootstrap](http://getbootstrap.com/getting-started/) css framework
+* [jekyll-bootstrap](https://github.com/plusjade/jekyll-bootstrap) for pieces of reusable code, especially if you want to use [bootstrap](http://getbootstrap.com/getting-started/) css framework. Also check out their well written [documentation on jekyll](http://jekyllbootstrap.com/lessons/jekyll-introduction.html) 
 * Alternatively check out [Foundation](http://foundation.zurb.com/docs/) which is the framework we have used due to cleaner class names and documentation 
 * We also added [Disqus](http://disqus.com/websites/) for managing user comments on the posts
 * Protip: [Bower](http://bower.io/) for frontend dependency management
 
-## [View the website](http://planemad.github.io/wikimaps-atlas/)
+For really advanced users who would like to use the slim templating system, sass and an asset pipeline along with jekyll, check out this tutorial by [Jason Fox](http://www.neverstopbuilding.com/jekyll-slim-compass-blog). We will probably get here as our site gets more complex in the future.
+
+## [View the Wikimaps Atlas website](http://planemad.github.io/wikimaps-atlas/)
 
