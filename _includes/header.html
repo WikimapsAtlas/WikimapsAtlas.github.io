@@ -20,10 +20,10 @@
     {% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
 {% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
     
-    <link rel="stylesheet" href="{{ relative }}static/bower_components/foundation/css/normalize.css">
-    <link rel="stylesheet" href="{{ BASE_PATH }}/static/bower_components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="{{ relative }}static/css/main.css">
-    <script src="{{ relative }}static/bower_components/modernizr/modernizr.js"></script>
+    <link rel="stylesheet" href="{{ site.baseurl }}/static/bower_components/foundation/css/normalize.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/static/bower_components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/static/css/main.css">
+    <script src="{{ site.baseurl }}/static/bower_components/modernizr/modernizr.js"></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
             <ul class="title-area">
                 <li class="name">
                     <h1>
-                        <a href="{{ relative }}">Wikimaps:<b>Atlas</b></a>
+                        <a href="{{ site.baseurl }}/">Wikimaps:<b>Atlas</b></a>
                     </h1>
                 </li>
                 <li class="toggle-topbar menu-icon">
@@ -50,7 +50,7 @@
                 <!-- Right Nav Section -->
                 <ul class="right">
                     <li>
-                        <a class="button" href="{{ relative }}sources">Sources</a>
+                        <a class="button" href="{{ site.baseurl }}/sources">Sources</a>
                     </li>
                 </ul>
 
@@ -63,7 +63,7 @@
                         <a href="https://twitter.com/WikiAtlas">@WikiAtlas</a>
                     </li>
                     <li>
-                        <a href="{{ relative }}blog">Blog</a>
+                        <a href="{{ site.baseurl }}/blog">Blog</a>
                     </li>
                 </ul>
             </section>

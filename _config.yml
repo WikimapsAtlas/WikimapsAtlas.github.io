@@ -14,8 +14,8 @@ production_url : http://planemad.github.io/wikimaps-atlas
 
 paginate: 10
 
-url: "planemad.github.io"
-BASE_PATH: http://planemad.github.io/wikimaps-atlas
+url: http://planemad.github.io
+baseurl: /wikimaps-atlas
 
 
 comments :
