@@ -4,7 +4,7 @@ The wikimaps atlas site is built using [Jekyll](http://jekyllrb.com/) and hosted
 
     gem install jekyll
 
-Clone the wikimaps-atlas repository and switch branch to gh-pages
+Clone the wikimaps-atlas repository and switch to the Github Pages branch
 
     git clone https://github.com/planemad/wikimaps-atlas.git
     cd wikimaps-atlas

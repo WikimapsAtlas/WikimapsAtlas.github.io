@@ -16,3 +16,7 @@ h1{
     line-height: 0.8;
     margin: 2rem 0 1rem;
 }
+
+header nav i{
+    font-size: 120%;
+}
