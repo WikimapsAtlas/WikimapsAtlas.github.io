@@ -1,5 +1,5 @@
 ---
-title: Project website goes live using Github Pages
+title: Wikimaps Atlas website goes live
 author: planemad
 categories: [website]
 tags: jekyll, github pages, foundation, markdown, website
@@ -17,9 +17,7 @@ It requires a bit of documentation reading to understand how the different piece
 * [jekyll-bootstrap](https://github.com/plusjade/jekyll-bootstrap) for pieces of reusable code, especially if you want to use [bootstrap](http://getbootstrap.com/getting-started/) css framework. Also check out their well written [documentation on jekyll](http://jekyllbootstrap.com/lessons/jekyll-introduction.html) 
 * Alternatively check out [Foundation](http://foundation.zurb.com/docs/) which is the framework we have used due to cleaner class names and documentation 
 * We also added [Disqus](http://disqus.com/websites/) for managing user comments on the posts
-* Protip: [Bower](http://bower.io/) for frontend dependency management
+* Protip: Use [Bower](http://bower.io/) for easy frontend dependency management
 
 For really advanced users who would like to use the slim templating system, sass and an asset pipeline along with jekyll, check out this tutorial by [Jason Fox](http://www.neverstopbuilding.com/jekyll-slim-compass-blog). We will probably get here as our site gets more complex in the future.
-
-## [View the Wikimaps Atlas website](http://planemad.github.io/wikimaps-atlas/)
 
