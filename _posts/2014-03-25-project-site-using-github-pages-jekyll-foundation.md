@@ -10,6 +10,8 @@ After some deliberation on wether to have a wordpress blog, we decided to stick 
 
 It requires a bit of documentation reading to understand how the different pieces work together, but for the terminally brave, this is but a minor skirmish. Here is the list of resources used to get our site running from scratch in a few hours:
 
+* Setup [Git](https://help.github.com/articles/set-up-git) and create a [new repository](https://help.github.com/articles/create-a-repo)
+* Start off with some [html5 boilerplate](http://html5boilerplate.com/)
 * [Github Pages](http://pages.github.com/) to turn your repo into a freely hosted website
 * Understand the basics of [Jekyll](http://jekyllrb.com/docs/home/) folder structure and concepts such as templates, layouts and includes
 * Get familiar with the [Markdown Syntax](http://daringfireball.net/projects/markdown/basics) and how [Liquid Templates](http://docs.shopify.com/themes/liquid-basics) works.
