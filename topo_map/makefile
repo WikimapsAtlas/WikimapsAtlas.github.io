@@ -3,22 +3,6 @@ final.json:  levels.json
     topojson --id-property none --simplify=0.5 -p name=elev -o final.json -- levels.json
     # simplification approach to explore further. Feedbacks welcome. 
 
-# shp2jsoning:
-levels.json: levels.shp
-    ogr2ogr -f GeoJSON -where "elev < 10000" levels.json levels.shp
-
-# merge
-levels.shp: level0001.shp level0050.shp level0100.shp level0200.shp level0500.shp level1000.shp level2000.shp level3000.shp level4000.shp level5000.shp
-    ogr2ogr levels.shp level0001.shp
-    ogr2ogr -update -append levels.shp level0050.shp
-    ogr2ogr -update -append levels.shp level0100.shp
-    ogr2ogr -update -append levels.shp level0200.shp
-    ogr2ogr -update -append levels.shp level0500.shp
-    ogr2ogr -update -append levels.shp level1000.shp
-    ogr2ogr -update -append levels.shp level2000.shp
-    ogr2ogr -update -append levels.shp level3000.shp
-    ogr2ogr -update -append levels.shp level4000.shp
-    ogr2ogr -update -append levels.shp level5000.shp
 
 # Polygonize slices:
 level0001.shp: level0001.tif
