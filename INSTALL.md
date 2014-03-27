@@ -8,17 +8,14 @@ Make, Curl, Unzip, [GDAL/OGR](https://www.mapbox.com/tilemill/docs/guides/gdal/)
 
 [Nodejs](http://howtonode.org/how-to-install-nodejs)
 
-    sudo apt-get install g++ curl libssl-dev apache2-utils
-    sudo apt-get install git-core
-    git clone git://github.com/ry/node.git
-    cd node
-    ./configure
-    make
-    sudo make install
+    sudo apt-get install python-software-properties python g++ make
+    sudo add-apt-repository ppa:chris-lea/node.js
+    sudo apt-get update
+    sudo apt-get install nodejs
 
 [TopoJSON](https://github.com/mbostock/topojson)
 
-    npm install topojson
+    npm install -g topojson
 
 # Working with OSM data
 
