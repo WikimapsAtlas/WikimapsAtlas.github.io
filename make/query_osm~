@@ -1,2 +1,0 @@
-\dt;
-select * from planet_osm_line where "ref" = 'NH 4';
