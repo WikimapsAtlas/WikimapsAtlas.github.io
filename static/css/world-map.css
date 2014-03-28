@@ -21,14 +21,14 @@ path {
   fill: #94BF8B;
   fill-opacity: .25;
   stroke: #000;
-  stroke-width: 1px;
+  stroke-width: 0.2px;
   pointer-events: none;
 }
 .country:hover .bounds {
-  stroke-width: 2px;
+  stroke-width: 1px;
 }
 .country:hover .land {
-  stroke-width: 1px;
+    fill: orange;
 }
 .outline {
   stroke: #000;

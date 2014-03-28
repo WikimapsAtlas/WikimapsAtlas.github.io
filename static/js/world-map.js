@@ -1,8 +1,8 @@
 /*
 *   Interactive World map with Admin0 bounding boxes
 *
-*   Written by Jason Davies http://www.jasondavies.com/maps/bounds/
-*   Updated by Hugo Lopez
+*   Source by Jason Davies http://www.jasondavies.com/maps/bounds/
+*   Modified by Hugo Lopez
 */
 
 $( document ).ready(function() {
