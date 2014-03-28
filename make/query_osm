@@ -1,0 +1,2 @@
+\dt;
+select osm_id from planet_osm_line where "ref" = 'NH 4';

@@ -1,0 +1,19 @@
+# Wikimaps Atlas Database MAKE - Data>PostGIS>SHP
+
+# Database settings
+USER=postgres
+HOST=localhost
+PORT=5432
+
+# Data Sources
+DATA_PATH=~/Documents/GIS/data
+## dbname=ne download=www.naturalearthdata.com 
+NATURALEARTH_PATH=$(DATA_PATH)/natural_earth_vector
+
+	#./create_tables.sh
+	mkdir -p $(DATA_PATH)/sql
+
+	cd $(DATA_PATH)
+	shp2pgsql -W LATIN1 110m_cultural/ne_110m_admin_0_countries.shp 110m_admin_0_countries ne > sql/110m_admin_0_countries.sql;psql $(USER) -d ne -h $(HOST) –p $(PORT)  -f sql/110m_admin_0_countries.sql
+
+
