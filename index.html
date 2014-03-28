@@ -1,14 +1,16 @@
 --- 
-title: WIkimaps Atlas
+title: Wikimaps Atlas
 layout: default 
 ---
 
+<link rel="stylesheet" href="{{ site.baseurl }}/static/css/world-map.css">
+
 <div class="large-5 columns">
-<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Geo-bounding_boxes-L0.png/601px-Geo-bounding_boxes-L0.png">
+    <div id="map"></div>
 
     </div>
 
-<div class="large-7 columns">
+<div id="intro" class="large-7 columns panel">
     
 <h1>Wikimaps <b>Atlas</b>
    <div><small>Reference maps for the world</small></div>
@@ -35,3 +37,5 @@ layout: default
 
 
 </div>
+
+<script src="{{ relative }}static/js/world-map.js"></script>

@@ -13,7 +13,7 @@ layout: default
  * License : Public Domain
  * Download : [(GLCF)](http://srtm.csi.cgiar.org/)
  
-* [NOAA ETOPO1](http://www.ngdc.noaa.gov/mgg/global/global.html) : 90m Global Digital Elevation Mesh
+* [NOAA ETOPO1](http://www.ngdc.noaa.gov/mgg/global/global.html) : 1arcsecond Global Digital Elevation Mesh includng Bathymetry
  * License : Public Domain
  * Download : [(NOAA)](http://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/data/ice_surface/grid_registered/georeferenced_tiff/)
 
@@ -22,3 +22,4 @@ layout: default
  * License : [Open Database License](https://www.openstreetmap.org/copyright)
  * Download : [(geofabrik.de)](http://download.geofabrik.de/)
  
+* [GRASS Wiki - GLobal Data Sources](http://grasswiki.osgeo.org/wiki/Global_datasets)

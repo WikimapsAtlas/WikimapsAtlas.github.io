@@ -1,35 +1,23 @@
 <footer class="row">
     <small>
-    <div><b><a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-by-sa</a> Wikimaps Team</b></div>
-    <a href="https://github.com/planemad/wikimaps-atlas">Contribute code</a> . <a href="https://github.com/planemad/wikimaps-atlas/issues">Report an issue</a>
+        <div>
+            <b>
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-by-sa</a>Wikimaps Team</b>
+        </div>
+        <a href="https://github.com/planemad/wikimaps-atlas">Contribute code</a>.
+        <a href="https://github.com/planemad/wikimaps-atlas/issues">Report an issue</a>
     </small>
 
 </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="{{ relative }}static/bower_components/jquery/dist/jquery.min.js"><\/script>')
-    </script>
-    <script src="{{ relative }}static/bower_components/foundation/js/foundation.min.js"></script>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-        $(document).foundation();
-        (function(b, o, i, l, e, r) {
-            b.GoogleAnalyticsObject = l;
-            b[l] || (b[l] =
-                function() {
-                    (b[l].q = b[l].q || []).push(arguments)
-                });
-            b[l].l = +new Date;
-            e = o.createElement(i);
-            r = o.getElementsByTagName(i)[0];
-            e.src = '//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e, r)
-        }(window, document, 'script', 'ga'));
-        ga('create', 'UA-XXXXX-X');
-        ga('send', 'pageview');
-    </script>
+<script src="{{ relative }}static/bower_components/foundation/js/foundation.min.js"></script>
+<script src="{{ relative }}static/bower_components/d3/d3.min.js"></script>
+<script src="{{ relative }}static/bower_components/topojson/topojson.js"></script>
+
+<script>
+    jQuery(document).foundation();
+</script>
 </body>
 
 </html>
