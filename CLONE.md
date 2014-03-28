@@ -16,7 +16,7 @@ Start the jekyll server and watch for changes (Default location is 0.0.0.0:4000)
     
 ## Directory structure
 
-Read the [official documentation](http://jekyllrb.com/docs/structure/). Static assets including js files, stylesheets and other frontend components are in the /static folder.
+Read the [official documentation](http://jekyllrb.com/docs/structure/). Static assets including js files, stylesheets and other frontend components are in the /static folder. 
 
 ## Writing a blog post
 
