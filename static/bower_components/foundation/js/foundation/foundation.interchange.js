@@ -4,7 +4,7 @@
   Foundation.libs.interchange = {
     name : 'interchange',
 
-    version : '5.2.1',
+    version : '5.2.3',
 
     cache : {},
 
@@ -57,14 +57,10 @@
 
           if (last_path == path) return;
 
-
-          var regex = "/^.(\.jpg|\.jpeg|\.png|\.gif|\.tiff|\.bmp)\??|#?./";
-
-          if (new RegExp(regex,'i').test(path)){
-
-              $(el).css('background-image', 'url('+path+')');
-              el.data('interchange-last-path', path);
-              return trigger(path);
+          if (/\.(gif|jpg|jpeg|tiff|png)([?#].*)?/i.test(path)) {
+            $(el).css('background-image', 'url('+path+')');
+            el.data('interchange-last-path', path);
+            return trigger(path);
           }
 
           return $.get(path, function (response) {
@@ -126,9 +122,9 @@
           if (passed) {
             this.settings.directives[passed
               .scenario[1]].call(this, passed.el, passed.scenario[0], function () {
-                if (arguments[0] instanceof Array) {
+                if (arguments[0] instanceof Array) { 
                   var args = arguments[0];
-                } else {
+                } else { 
                   var args = Array.prototype.slice.call(arguments, 0);
                 }
 
@@ -255,7 +251,7 @@
 
     object : function(el) {
       var raw_arr = this.parse_data_attr(el),
-          scenarios = [],
+          scenarios = [], 
           i = raw_arr.length;
 
       if (i > 0) {
@@ -263,7 +259,7 @@
           var split = raw_arr[i].split(/\((.*?)(\))$/);
 
           if (split.length > 1) {
-            var cached_split = split[0].split(','),
+            var cached_split = split[0].split(/\, /),
                 params = this.parse_params(cached_split[0],
                   cached_split[1], split[1]);
 
@@ -313,7 +309,7 @@
 
     parse_data_attr : function (el) {
       var raw = el.attr(this.attr_name()).split(/\[(.*?)\]/),
-          i = raw.length,
+          i = raw.length, 
           output = [];
 
       while (i--) {
@@ -332,4 +328,4 @@
 
   };
 
-}(jQuery, this, this.document));
+}(jQuery, window, window.document));

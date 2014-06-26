@@ -1,41 +1,66 @@
 --- 
-title: Wikimaps Atlas
+title: Wikimaps Atlas 
 layout: default 
 ---
 
 <link rel="stylesheet" href="{{ site.baseurl }}/static/css/world-map.css">
 
-<div class="large-5 columns">
-    <div id="map"></div>
-
+<article id="wikiatlas">
+    
+    <div class="large-5 columns">
+        <div class="map"></div>
     </div>
 
-<div id="intro" class="large-7 columns panel">
-    
-<h1>Wikimaps <b>Atlas</b>
-   <div><small>Reference maps for the world</small></div>
-</h1>
-    
-    <p>The Atlas is a <a href="http://meta.wikimedia.org/wiki/Wikimaps">Wikimaps</a> component to generate a standardized repository of encyclopedic reference maps for the whole world using open data. The design and development of this project is currently supported through an <a href="http://meta.wikimedia.org/wiki/Grants:IEG/Wikimaps_Atlas">Individual Engagement Grant</a> from the Wikimedia Foundation.
-    </p>
-    
-    <h4>Browse the atlas:</h4>
-    <form>
-    <input tabindex="1" id="atlas-search" type="search" placeholder="Search for a country or region" autocomplete="off" disabled>
-  </form>
-    
+    <div id="intro" class="large-7 columns panel">
+
+        <h1>Wikimaps
+            <b>Atlas</b>
+            <div>
+                <small>Reference maps for the world</small>
+            </div>
+        </h1>
+
+        <p>The Atlas is a
+            <a href="http://meta.wikimedia.org/wiki/Wikimaps">Wikimaps</a>component to generate a standardized repository of encyclopedic reference maps for the whole world using open data. The design and development of this project is currently supported through an
+            <a href="http://meta.wikimedia.org/wiki/Grants:IEG/Wikimaps_Atlas">Individual Engagement Grant</a>from the Wikimedia Foundation.
+        </p>
+
+        <h4>Browse the atlas:</h4>
+        <form>
+            <input tabindex="1" id="atlas-search" type="search" placeholder="Search for a country or region" autocomplete="off" disabled>
+        </form>
 
 
-<h5>Recent posts:</h5>
-<ul>
-    {% for post in site.posts %}
-    <li>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-</ul>
+
+        <h5>Recent posts:</h5>
+        <ul>
+            {% for post in site.posts %}
+            <li>
+                <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
 
 
-</div>
+    </div>
+</article>
 
 <script src="{{ relative }}static/js/world-map.js"></script>
+<script src="{{ relative }}static/js/wikimaps.atlas.js"></script>
+<script>
+    var Atlas;
+    $(document).ready(function () {
+        
+        //Initialize Atlas with Globe World Map
+        Atlas = new wikiatlas.map({
+            container:"#wikiatlas",
+            location:"World",
+            map:"Admin0",
+            view:"Globe"
+        });
+        
+       
+        
+        
+    });
+</script>

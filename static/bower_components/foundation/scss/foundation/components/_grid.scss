@@ -11,7 +11,6 @@ $include-html-grid-classes: $include-html-classes !default;
 $include-xl-html-grid-classes: false !default;
 
 $row-width: rem-calc(1000) !default;
-$column-gutter: rem-calc(30) !default;
 $total-columns: 12 !default;
 
 //
@@ -154,21 +153,6 @@ $total-columns: 12 !default;
 // $size - Name of class to use, i.e. "large" will generate .large-1, .large-2, etc.
 @mixin grid-html-classes($size) {
 
-  .column.#{$size}-centered,
-  .columns.#{$size}-centered { @include grid-column($center:true, $collapse:null, $float:false); }
-
-  .column.#{$size}-uncentered,
-  .columns.#{$size}-uncentered {
-    margin-#{$default-float}: 0;
-    margin-#{$opposite-direction}: 0;
-    float: $default-float !important;
-  }
-
-  .column.#{$size}-uncentered.opposite,
-  .columns.#{$size}-uncentered.opposite {
-    float: $opposite-direction;
-  }
-
   @for $i from 0 through $total-columns - 1 {
     .#{$size}-push-#{$i} {
       @include grid-column($push:$i, $collapse:null, $float:false);
@@ -193,13 +177,27 @@ $total-columns: 12 !default;
   @for $i from 0 through $total-columns - 1 {
     .#{$size}-offset-#{$i} { @include grid-column($offset:$i, $collapse:null,$float:false); }
   }
-  .#{$size}-reset-order,
   .#{$size}-reset-order {
     margin-#{$default-float}: 0;
     margin-#{$opposite-direction}: 0;
     left: auto;
     right: auto;
     float: $default-float;
+  }
+
+  .column.#{$size}-centered,
+  .columns.#{$size}-centered { @include grid-column($center:true, $collapse:null, $float:false); }
+
+  .column.#{$size}-uncentered,
+  .columns.#{$size}-uncentered {
+    margin-#{$default-float}: 0;
+    margin-#{$opposite-direction}: 0;
+    float: $default-float !important;
+  }
+
+  .column.#{$size}-uncentered.opposite,
+  .columns.#{$size}-uncentered.opposite {
+    float: $opposite-direction;
   }
 }
 

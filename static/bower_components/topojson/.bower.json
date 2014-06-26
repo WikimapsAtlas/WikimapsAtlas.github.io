@@ -1,6 +1,6 @@
 {
   "name": "topojson",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "main": "topojson.js",
   "scripts": [
     "topojson.js"
@@ -18,14 +18,13 @@
     "test"
   ],
   "homepage": "https://github.com/mbostock/topojson",
-  "_release": "1.5.3",
+  "_release": "1.5.4",
   "_resolution": {
     "type": "version",
-    "tag": "v1.5.3",
-    "commit": "f1f8294502565b6ece0652d47e2305a6d3b84d25"
+    "tag": "v1.5.4",
+    "commit": "ce48d64d96edb31db23fb5dd3a352252b453e6ba"
   },
   "_source": "git://github.com/mbostock/topojson.git",
   "_target": "~1.5.3",
-  "_originalSource": "topojson",
-  "_direct": true
+  "_originalSource": "topojson"
 }

@@ -10,3 +10,5 @@ title: Working with PostGIS spatial databases
 [Data management and queries in PostGIS](http://postgis.refractions.net/documentation/manual-1.4/ch04.html)
 
 [PROJ.4 Geographic projection transformation list](http://www.remotesensing.org/geotiff/proj_list/)
+
+[Joining databases using SQL joins](http://www.tutorialspoint.com/sql/sql-using-joins.htm)
