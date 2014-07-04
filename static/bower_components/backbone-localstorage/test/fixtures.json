@@ -1,0 +1,10 @@
+{
+    "label": "value",
+    "items": [{
+        "id": 1,
+        "name": "Iñtërnâtiônàlizætiøn"
+    }, {
+        "id": 2,
+        "name": "Second item"
+    }]
+}
