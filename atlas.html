@@ -6,14 +6,26 @@ layout: atlas
 <link rel="stylesheet" href="{{ site.baseurl }}/static/css/world-map.css">
 
 
+
+
 <div id="wikiatlas">
-    <div id="wikiatlas-explorer">
-    <h2 class="left">Map Title <small>January 2014</small></h2>
-    <h2 class="subheader right"><input id="wikiatlas-search" placeholder="Find a place"></h2>
-    </div>
-    <div id="wikiatlas-map"></div>
-    <div id="wikiatlas-toolbar"></div>
     
+    <!-- Header -->
+    <div id="wikiatlas-titlebar">
+        
+        <h2 id="wikiatlas-title" class="left">
+        </h2>
+        
+        <h2 class="subheader right"><input id="wikiatlas-search" placeholder="Find a place"></h2>
+        
+    </div>
+    
+    <!-- Content -->
+    <div id="wikiatlas-map"></div>
+    
+    <!-- Tools -->
+    <div id="wikiatlas-toolbar"></div>
+
 </div>
 
 
@@ -25,18 +37,18 @@ layout: atlas
 <script src="{{ site.baseurl }}/static/bower_components/topojson/topojson.js"></script>
 <script src="{{ site.baseurl }}/static/js/wikimaps.atlas.js"></script>
 <script>
-    
     atlasMapOptions = {
-            title: "Political Map of India",
-            date: "2014",
-            location: "IND",
-            theme: "Administrative"
+        mapTitle: "Political Map of India",
+        mapDate: "2014",
+        mapLocation: "India",
+        mapsetID: "IND",
+        mapTheme: "Administrative"
     }
-        
-     var wikiatlas = new Wikiatlas(atlasMapOptions);
-    
+
+    var atlas = new wikiatlas.Map(atlasMapOptions);
+
     $(document).ready(function () {
-      
-        
+
+
     });
 </script>
