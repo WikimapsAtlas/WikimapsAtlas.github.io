@@ -11,90 +11,123 @@
  *
  */
 
+//Global app backbone
+var wikiatlas = wikiatlas || {};
 
-var wikiatlas = {};
+//Other variables
+var ENTER_KEY = 13;
+var ESC_KEY = 27;
 
-//Wikiatlas Model
-wikiatlas.Map = Backbone.Model.extend({
+(function () {
 
-    //Extend default settings using custom options
-    defaults: {
-        mapDate: "2014",
-        mapLocation: "The World",
-        mapsetID: "W0",
-        mapTheme: "Administrative",
-        view: "Globe",
-        EPSG: "3857",
-        width: 500,
-        height: 600
-    },
+    //MODELS
+    //Wikiatlas Model
+    //Map constructor
+    wikiatlas.Map = Backbone.Model.extend({
 
-    // Constructor
-    initialize: function () {
+        //Extend default settings using custom options
+        defaults: {
+            mapDate: "2014",
+            mapLocation: "The World",
+            mapsetID: "W0",
+            mapTheme: "Administrative",
+            view: "Globe",
+            EPSG: "3857"
+        },
 
-        //Render everything
-        this.render();
+        // Constructor
+        initialize: function () {
 
-        //Update the map title
-        this.on("change:mapLocation change:mapTheme", this.setMapTitle());
+            //Render everything
+            this.render();
 
-    },
+            //Update the map title
+            this.on("change:mapLocation change:mapTheme", this.setMapTitle());
 
-    // Render the atlas
-    render: function () {
+        },
 
-        this.setAtlasDimesnions();
-        this.setD3Svg();
+        // Render the atlas
+        render: function () {
 
-    },
+            //Setup a new atlas view
+            this.atlas = new wikiatlas.atlas();
 
-    //Sets the map title as "Theme" Map of "Location"
-    setMapTitle: function () {
-        this.set("mapTitle", this.get("mapTheme") + " Map Of " + this.get("mapLocation"));
-    },
+        },
 
-    //Sets width and height for container based on the screen
-    setAtlasDimesnions: function () {
-        $el = $("#wikiatlas");
-        this.set("width", $el.width());
-        this.set("height", $el.width() * 0.707);
-    },
+        //Sets the map title as "Theme" Map of "Location"
+        setMapTitle: function () {
+            this.set("mapTitle", this.get("mapTheme") + " Map Of " + this.get("mapLocation"));
+        }
 
-    //Sets up the d3 svg element for the views
-    setD3Svg : function () {
+    });
 
-        //Load the map data
+    //VIEWS
+    //The main wikiatlas view
+    wikiatlas.atlas = Backbone.View.extend({
 
-        //var projection = d3.geo.albers()
-        //    .scale(50)
-        //    .translate([width / 2, height / 2]); 
-        var projection = d3.geo.mercator()
-            .center([82.7, 23])
-            .scale(6000)
-            .translate([this.width / 2, this.height / 2]); 
+        // Target element
+        el: '#wikiatlas',
 
-        var path = d3.geo.path()
-            .projection(projection); 
+        // Delegated events for user input in search bar
+        events: {
+            'keypress #wikiatlas-search': 'searchForMap'
+        },
 
-        var svg = d3.select("#wikiatlas-map").append("svg")
-            .attr("width", this.width)
-            .attr("height", this.height);
-    }
+        // Inititalize atlas by 
+        initialize: function () {
 
-});
+            this.createD3SVG();
 
-wikiatlas.$mapTitle = Backbone.View.extend({
+            //Cache UI objects
+            this.$mapSearch = this.$('#wikiatlas-search');
+            this.$mapTitle = this.$('#wikiatlas-title');
+            this.$mapSVG = this.$("#wikiatlas-map");
+            this.$mapFeatureList = this.$("#wikiatlas-features");
 
-    // Target element
-    el: '#wikiatlas-title',
-    template: _.template("<%= mapTitle %><small><%= mapDate %></small>")
+        },
+
+        //Create empty SVG for d3
+        createD3SVG: function () {
+
+            //Sets width and height for container based on the screen
+            this.width = this.$el.width();
+            this.height = this.width * 0.404;
+
+            var projection = d3.geo.mercator()
+                .center([82.7, 23])
+                .scale(6000)
+                .translate([this.width / 2, this.height / 2]); 
+
+            var path = d3.geo.path()
+                .projection(projection); 
+
+            //Create empty SVG element
+            var svg = d3.select("#wikiatlas-map").append("svg")
+                .attr("width", this.width)
+                .attr("height", this.height);
+
+        },
+
+        //Search for map from user input
+        searchForMap: function (e) {
+            if (e.which === ENTER_KEY && this.$input.val().trim()) {
+                app.todos.create(this.newAttributes());
+                this.$input.val('');
+            }
+        },
+
+    });
+
+    wikiatlas.$mapTitle = Backbone.View.extend({
+
+        // Target element
+        el: '#wikiatlas-title',
+        template: _.template("<%= mapTitle %><small><%= mapDate %></small>")
 
 
-});
+    });
 
-wikiatlas.$mapSearch = Backbone.View.extend({
 
-    // Targer element
-    el: '#wikiatlas-search'
 
-});
+
+})();
