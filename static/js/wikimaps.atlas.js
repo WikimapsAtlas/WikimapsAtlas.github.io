@@ -38,6 +38,9 @@ var ESC_KEY = 27;
         // Constructor
         initialize: function () {
 
+            //Setup a new atlas view
+            this.atlas = new wikiatlas.Atlas();
+
             //Render everything
             this.render();
 
@@ -49,24 +52,71 @@ var ESC_KEY = 27;
         // Render the atlas
         render: function () {
 
-            //Setup a new atlas view
-            this.atlas = new wikiatlas.atlas();
+            //this.findMap();
+            this.drawMap();
+            //this.loadFeatureList();
 
         },
 
         //Sets the map title as "Theme" Map of "Location"
         setMapTitle: function () {
             this.set("mapTitle", this.get("mapTheme") + " Map Of " + this.get("mapLocation"));
+        },
+
+        //Loads the requested mapset file and adds it to the svg
+        loadMapData: function () {
+
+            context = this;
+
+            //Define the callback function to execute after the json is loaded
+            var cb = function (error, topology) {
+                
+                //Convert from topojson to geojson
+                featureSelector = context.get("mapsetID");
+                topologyObjects = topology.objects[context.attributes.mapsetID];
+                mapData = topojson.feature(topology, topologyObjects).features;
+                console.log(mapData);
+
+                //Projection to use
+                projection = d3.geo.mercator()
+                    .center([82.7, 23])
+                    .scale(500)
+                    .translate([context.atlas.width / 2, context.atlas.height / 2]); 
+
+                //Path generator
+                path = d3.geo.path()
+                    .projection(projection); 
+
+                //Create paths
+                var map = context.atlas.D3SVG.selectAll("path")
+                    .data(mapData)
+                    .enter().append("path")
+                    .attr("d", path);
+
+            }
+            return cb;
+
+        },
+
+        //Draws the d3 map
+        drawMap: function () {
+
+            mapsetLocation = "../../atlas/" + this.get("mapsetID") + ".topojson";
+            d3.json(mapsetLocation, this.loadMapData());
+            //d3.json("../../atlas/indiamapjk.json", loadMapData(this));
         }
 
     });
 
     //VIEWS
     //The main wikiatlas view
-    wikiatlas.atlas = Backbone.View.extend({
+    wikiatlas.Atlas = Backbone.View.extend({
 
         // Target element
         el: '#wikiatlas',
+
+        //Interacts with the map model
+        model: wikiatlas.Map,
 
         // Delegated events for user input in search bar
         events: {
@@ -93,16 +143,8 @@ var ESC_KEY = 27;
             this.width = this.$el.width();
             this.height = this.width * 0.404;
 
-            var projection = d3.geo.mercator()
-                .center([82.7, 23])
-                .scale(6000)
-                .translate([this.width / 2, this.height / 2]); 
-
-            var path = d3.geo.path()
-                .projection(projection); 
-
             //Create empty SVG element
-            var svg = d3.select("#wikiatlas-map").append("svg")
+            this.D3SVG = d3.select("#wikiatlas-map").append("svg")
                 .attr("width", this.width)
                 .attr("height", this.height);
 
