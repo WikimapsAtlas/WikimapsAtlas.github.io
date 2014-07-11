@@ -1,0 +1,51 @@
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.feature--canton {
+  fill: #bbb;
+}
+
+.feature--lake {
+  fill: steelblue;
+  fill-opacity: .8;
+}
+
+.feature:hover {
+  fill: yellow;
+}
+
+.feature {
+  fill: #ccc;
+  cursor: pointer;
+}
+
+.feature.active {
+  fill: yellow;
+    stroke: #999;
+    stroke-width:0.5;
+}
+
+.outline {
+  fill: none;
+  stroke: #999;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.mesh{
+    fill:none;
+     stroke: #bbb;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+    pointer-events: none;
+}

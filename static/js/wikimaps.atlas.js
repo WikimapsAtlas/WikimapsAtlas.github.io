@@ -85,6 +85,7 @@ var ESC_KEY = 27;
         renderMapData: function (topology) {
 
             //Convert from topojson to geojson
+            console.log(topology);
             featureSelector = this.get("mapsetID");
             topologyFeatures = topology.objects[featureSelector];
             mapData = topojson.feature(topology, topologyFeatures).features;
@@ -208,14 +209,7 @@ var ESC_KEY = 27;
                 this.$input.val('');
             }
         },
-        
-        //Zoom to a feature
-        zoomReset : function(d){
-            clicked(d);
-        }
-        
-        
-        
+            
 
     });
 
