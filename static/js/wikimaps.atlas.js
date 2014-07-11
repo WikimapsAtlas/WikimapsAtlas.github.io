@@ -23,6 +23,7 @@ var ESC_KEY = 27;
     var active = d3.select(null);
     var width, height;
     var svgMap, g;
+    var translate,scale;    //For zoom
 
 
     //MODELS
@@ -100,16 +101,6 @@ var ESC_KEY = 27;
             path = d3.geo.path()
                 .projection(projection); 
 
-            // Compute the bounds of a feature of interest, then derive scale & translate
-            b = path.bounds(mapData),
-            s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-            t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
-
-            //Auto center and scale
-            projection.scale(500)
-                .translate([500,300])
-            .center([82,23]); 
-
             //Create paths
             svgMap.selectAll("path")
                 .data(mapData)
@@ -130,6 +121,9 @@ var ESC_KEY = 27;
                 .datum(topojson.merge(topology, topologyFeatures.geometries))
                 .attr("class", "outline")
                 .attr("d", path);
+            
+            //Reset the zoom to outline
+            reset();
             
 
         },
@@ -231,6 +225,20 @@ var ESC_KEY = 27;
         .scale(1)
         .scaleExtent([1, 8])
         .on("zoom", zoomed);
+    
+    //Returns transformation parameters for a feature
+    function transform(d){
+        var bounds = path.bounds(d),
+            dx = bounds[1][0] - bounds[0][0],
+            dy = bounds[1][1] - bounds[0][1],
+            x = (bounds[0][0] + bounds[1][0]) / 2,
+            y = (bounds[0][1] + bounds[1][1]) / 2;
+            var t={};
+            t.scale = .9 / Math.max(dx / width, dy / height);
+            t.translate = [width / 2 - t.scale * x, height / 2 - t.scale * y];
+            
+            return t;
+        }
 
     //Sets active class and trigger animation
     function clicked(d) {
@@ -239,17 +247,11 @@ var ESC_KEY = 27;
         active.classed("active", false);
         active = d3.select(this).classed("active", true);
 
-        var bounds = path.bounds(d),
-            dx = bounds[1][0] - bounds[0][0],
-            dy = bounds[1][1] - bounds[0][1],
-            x = (bounds[0][0] + bounds[1][0]) / 2,
-            y = (bounds[0][1] + bounds[1][1]) / 2,
-            scale = .9 / Math.max(dx / width, dy / height),
-            translate = [width / 2 - scale * x, height / 2 - scale * y];
+        t = transform(d);
 
         svgMap.transition()
             .duration(750)
-            .call(zoom.translate(translate).scale(scale).event);
+            .call(zoom.translate(t.translate).scale(t.scale).event);
     }
 
     //Scale style with zoom
@@ -263,10 +265,16 @@ var ESC_KEY = 27;
     function reset() {
         active.classed("active", false);
         active = d3.select(null);
+        
+                    b = path.bounds(d3.select(".outline").datum());
+            s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+            t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+            console.log(b);
+
 
         svgMap.transition()
             .duration(750)
-            .call(zoom.translate([0, 0]).scale(1).event);
+            .call(zoom.translate(t).scale(s).event);
     }
 
     function stopped() {
