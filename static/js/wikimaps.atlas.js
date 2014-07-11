@@ -20,6 +20,11 @@ var ESC_KEY = 27;
 
 (function () {
 
+    var active = d3.select(null);
+    var width, height;
+    var svgMap, g;
+   
+
     //MODELS
     //Wikiatlas Model
     //Map constructor
@@ -64,39 +69,53 @@ var ESC_KEY = 27;
         },
 
         //Loads the requested mapset file and adds it to the svg
+        //TODO: Probably not the best way to do it
         loadMapData: function () {
 
             context = this;
 
             //Define the callback function to execute after the json is loaded
             var cb = function (error, topology) {
-                
-                //Convert from topojson to geojson
-                featureSelector = context.get("mapsetID");
-                topologyObjects = topology.objects[context.attributes.mapsetID];
-                mapData = topojson.feature(topology, topologyObjects).features;
-                console.log(mapData);
 
-                //Projection to use
-                projection = d3.geo.mercator()
-                    .center([82.7, 23])
-                    .scale(500)
-                    .translate([context.atlas.width / 2, context.atlas.height / 2]); 
-
-                //Path generator
-                path = d3.geo.path()
-                    .projection(projection); 
-
-                //Create paths
-                var map = context.atlas.D3SVG.selectAll("path")
-                    .data(mapData)
-                    .enter().append("path")
-                    .attr("d", path);
+                context.renderMapData(topology);
 
             }
             return cb;
 
         },
+
+        //Render the loaded topology data using d3
+        renderMapData: function (topology) {
+
+            //Convert from topojson to geojson
+            featureSelector = this.get("mapsetID");
+            topologyFeatures = topology.objects[context.attributes.mapsetID];
+            mapData = topojson.feature(topology, topologyFeatures).features;
+
+            //Loads the topology data into the map object and render the map
+            this.set("mapFeatures", topologyFeatures);
+
+            //Projection to use
+            projection = d3.geo.mercator()
+                .center([82.7, 23])
+                .scale(500)
+                .translate([this.atlas.width / 2, this.atlas.height / 2]); 
+
+            //Path generator
+            path = d3.geo.path()
+                .projection(projection); 
+
+            //Create paths
+            svgMap.selectAll("path")
+                .data(mapData)
+                .enter().append("path")
+                .attr("d", path)
+                .attr("class", "feature")
+                .on("click", clicked);
+
+        },
+
+        //
 
         //Draws the d3 map
         drawMap: function () {
@@ -108,6 +127,7 @@ var ESC_KEY = 27;
 
     });
 
+    //
     //VIEWS
     //The main wikiatlas view
     wikiatlas.Atlas = Backbone.View.extend({
@@ -142,11 +162,23 @@ var ESC_KEY = 27;
             //Sets width and height for container based on the screen
             this.width = this.$el.width();
             this.height = this.width * 0.404;
+            width = this.width;
+            height = this.height;
 
             //Create empty SVG element
-            this.D3SVG = d3.select("#wikiatlas-map").append("svg")
+            svgMap = d3.select("#wikiatlas-map").append("svg")
                 .attr("width", this.width)
-                .attr("height", this.height);
+                .attr("height", this.height)
+                .on("click", stopped, true);
+
+            svgMap.append("rect")
+                .attr("class", "background")
+                .attr("width", this.width)
+                .attr("height", this.height)
+                .on("click", reset);
+
+            g = svgMap.append("g");
+            svgMap = g;
 
         },
 
@@ -169,6 +201,55 @@ var ESC_KEY = 27;
 
     });
 
+    //D3 click and zoom animation
+    //http://bl.ocks.org/mbostock/9656675
+    
+     //Zoom behaviour
+    var zoom = d3.behavior.zoom()
+        .translate([0, 0])
+        .scale(1)
+        .scaleExtent([1, 8])
+        .on("zoom", zoomed);
+
+    //Sets active class and trigger animation
+    function clicked(d) {
+        if (active.node() === this) return reset();
+        active.classed("active", false);
+        active = d3.select(this).classed("active", true);
+
+        var bounds = path.bounds(d),
+            dx = bounds[1][0] - bounds[0][0],
+            dy = bounds[1][1] - bounds[0][1],
+            x = (bounds[0][0] + bounds[1][0]) / 2,
+            y = (bounds[0][1] + bounds[1][1]) / 2,
+            scale = .9 / Math.max(dx / width, dy / height),
+            translate = [width / 2 - scale * x, height / 2 - scale * y];
+
+        svgMap.transition()
+            .duration(750)
+            .call(zoom.translate(translate).scale(scale).event);
+    }
+
+     //Scale style with zoom
+    function zoomed() {
+        svgMap.style("stroke-width", 1.5 / d3.event.scale + "px");
+        svgMap.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    }
+    
+    // If the drag behavior prevents the default click,
+    // also stop propagation so we don’t click-to-zoom.
+    function reset() {
+        active.classed("active", false);
+        active = d3.select(null);
+
+        svgMap.transition()
+            .duration(750)
+            .call(zoom.translate([0, 0]).scale(1).event);
+    }
+
+    function stopped() {
+        if (d3.event.defaultPrevented) d3.event.stopPropagation();
+    }
 
 
 
