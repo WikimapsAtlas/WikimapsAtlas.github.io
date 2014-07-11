@@ -23,7 +23,7 @@ var ESC_KEY = 27;
     var active = d3.select(null);
     var width, height;
     var svgMap, g;
-   
+
 
     //MODELS
     //Wikiatlas Model
@@ -73,12 +73,9 @@ var ESC_KEY = 27;
         loadMapData: function () {
 
             context = this;
-
             //Define the callback function to execute after the json is loaded
             var cb = function (error, topology) {
-
                 context.renderMapData(topology);
-
             }
             return cb;
 
@@ -89,21 +86,28 @@ var ESC_KEY = 27;
 
             //Convert from topojson to geojson
             featureSelector = this.get("mapsetID");
-            topologyFeatures = topology.objects[context.attributes.mapsetID];
+            topologyFeatures = topology.objects[featureSelector];
             mapData = topojson.feature(topology, topologyFeatures).features;
 
             //Loads the topology data into the map object and render the map
             this.set("mapFeatures", topologyFeatures);
 
             //Projection to use
-            projection = d3.geo.mercator()
-                .center([82.7, 23])
-                .scale(500)
-                .translate([this.atlas.width / 2, this.atlas.height / 2]); 
+            projection = d3.geo.mercator();
 
             //Path generator
             path = d3.geo.path()
                 .projection(projection); 
+
+            // Compute the bounds of a feature of interest, then derive scale & translate
+            b = path.bounds(mapData),
+            s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+            t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+            //Auto center and scale
+            projection.scale(500)
+                .translate([500,300])
+            .center([82,23]); 
 
             //Create paths
             svgMap.selectAll("path")
@@ -113,9 +117,21 @@ var ESC_KEY = 27;
                 .attr("class", "feature")
                 .on("click", clicked);
 
-        },
+            //Create a mesh of all interior features
+            svgMap.append("path")
+                .datum(topojson.mesh(topology, topologyFeatures, function(a, b) { return a !== b; }))
+                .attr("class", "mesh")
+                .attr("d", path);
+            
+            
+            //Create an outline of merged features
+            svgMap.append("path")
+                .datum(topojson.merge(topology, topologyFeatures.geometries))
+                .attr("class", "outline")
+                .attr("d", path);
+            
 
-        //
+        },
 
         //Draws the d3 map
         drawMap: function () {
@@ -127,6 +143,9 @@ var ESC_KEY = 27;
 
     });
 
+ 
+    
+    
     //
     //VIEWS
     //The main wikiatlas view
@@ -189,6 +208,14 @@ var ESC_KEY = 27;
                 this.$input.val('');
             }
         },
+        
+        //Zoom to a feature
+        zoomReset : function(d){
+            clicked(d);
+        }
+        
+        
+        
 
     });
 
@@ -203,8 +230,8 @@ var ESC_KEY = 27;
 
     //D3 click and zoom animation
     //http://bl.ocks.org/mbostock/9656675
-    
-     //Zoom behaviour
+
+    //Zoom behaviour
     var zoom = d3.behavior.zoom()
         .translate([0, 0])
         .scale(1)
@@ -213,6 +240,7 @@ var ESC_KEY = 27;
 
     //Sets active class and trigger animation
     function clicked(d) {
+        console.log(d);
         if (active.node() === this) return reset();
         active.classed("active", false);
         active = d3.select(this).classed("active", true);
@@ -230,12 +258,12 @@ var ESC_KEY = 27;
             .call(zoom.translate(translate).scale(scale).event);
     }
 
-     //Scale style with zoom
+    //Scale style with zoom
     function zoomed() {
         svgMap.style("stroke-width", 1.5 / d3.event.scale + "px");
         svgMap.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     }
-    
+
     // If the drag behavior prevents the default click,
     // also stop propagation so we don’t click-to-zoom.
     function reset() {
