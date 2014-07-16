@@ -1,51 +1,55 @@
 .background {
-  fill: #fafafa;
-  pointer-events: all;
+    fill: none;
+    pointer-events: all;
+    stroke-width:1px;
+    stroke:#ccc;
 }
-
 .boundary {
-  fill: none;
-  stroke: #fff;
-  stroke-linejoin: round;
-  stroke-linecap: round;
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+    stroke-linecap: round;
 }
-
 .feature--canton {
-  fill: #bbb;
+    fill: #bbb;
 }
-
 .feature--lake {
-  fill: steelblue;
-  fill-opacity: .8;
+    fill: steelblue;
+    fill-opacity: .8;
 }
-
 .feature:hover {
-  fill: yellow;
+    fill: yellow;
 }
-
 .feature {
-  fill: #ccc;
-  cursor: pointer;
+    fill: #ccc;
+    cursor: pointer;
 }
-
 .feature.active {
-  fill: yellow;
-    stroke: #999;
-    stroke-width:0.5;
+    fill: yellow;
+    stroke: yellow;
+    stroke-width: 0.2px;
 }
-
 .outline {
-  fill: none;
-  stroke: #999;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+    fill: none;
+    stroke: #999;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     pointer-events: none;
 }
-
-.mesh{
-    fill:none;
-     stroke: #bbb;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.mesh {
+    fill: none;
+    stroke: #fff;
+    stroke-width:0.1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     pointer-events: none;
+}
+/* Typography */
+
+text {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 90%;
+    text-anchor: middle;
+/*    cursor: pointer;*/
+    opacity: 0.4;
 }

@@ -9,20 +9,20 @@ layout: atlas
 
 
 <div id="wikiatlas">
-    
+
     <!-- Header -->
     <div id="wikiatlas-titlebar">
-        
+
         <h2 id="wikiatlas-title" class="left">
         </h2>
-        
+
         <h2 class="subheader right"><input id="wikiatlas-search" placeholder="Find a place"></h2>
-        
+
     </div>
-    
+
     <!-- Content -->
     <div id="wikiatlas-map"></div>
-    
+
     <!-- Tools -->
     <div id="wikiatlas-toolbar"></div>
 
@@ -42,9 +42,31 @@ layout: atlas
         mapLocation: "India",
         mapTheme: "Administrative",
         mapDate: "2014",
-        mapsetID: "UZB.adm1"
-        
+        mapsetID: "AFG.adm1"
     }
+
+    atlasOptions = [
+        {
+            map: {
+                id: "adm.AFG.adm1.2014", //Shortcut mapset id, overrides the verbose options below
+                type: "Administrative", // Map of
+                theme: "States", // in
+                location: "India",
+                date: "2014",
+                id: "AFG.adm1",
+                style: {
+                    name: "default",
+                    mapCSS: [
+            ".Province {font-size:15%}",
+            ".State {font-size:5%}"
+            ]
+                }
+            }
+
+
+    },
+                   ]
+
     /** Using mapsetID
     
     Format: LocationID.ThemeID.Date

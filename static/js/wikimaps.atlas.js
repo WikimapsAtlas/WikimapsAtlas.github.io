@@ -23,7 +23,6 @@ var ESC_KEY = 27;
     var active = d3.select(null);
     var width, height;
     var svgMap, g;
-    var translate,scale;    //For zoom
 
 
     //MODELS
@@ -51,7 +50,12 @@ var ESC_KEY = 27;
             this.render();
 
             //Update the map title
-            this.on("change:mapLocation change:mapTheme", this.setMapTitle());
+            this.on("change:mapsetID change:mapLocation change:mapTheme", this.setMapTitle());
+
+        },
+
+        // Add a 
+        addMapLayer: function () {
 
         },
 
@@ -101,30 +105,61 @@ var ESC_KEY = 27;
             path = d3.geo.path()
                 .projection(projection); 
 
-            //Create paths
-            svgMap.selectAll("path")
+            //Create paths for features
+            svgMap.append("g")
+                .attr("class", "features")
+                .selectAll("path")
                 .data(mapData)
                 .enter().append("path")
                 .attr("d", path)
+                .attr("data-id", function (d) {
+                    return d.id;
+                })
                 .attr("class", "feature")
                 .on("click", clicked);
 
             //Create a mesh of all interior features
             svgMap.append("path")
-                .datum(topojson.mesh(topology, topologyFeatures, function(a, b) { return a !== b; }))
+                .datum(topojson.mesh(topology, topologyFeatures, function (a, b) {
+                    return a !== b;
+                }))
                 .attr("class", "mesh")
                 .attr("d", path);
-            
-            
+
+
             //Create an outline of merged features
             svgMap.append("path")
                 .datum(topojson.merge(topology, topologyFeatures.geometries))
                 .attr("class", "outline")
                 .attr("d", path);
-            
+
+            //Generate group of text labels from name
+            svgMap.append("g")
+                .attr("class", "labels")
+                .selectAll("text")
+                .data(mapData)
+                .enter()
+                .append("text")
+                .attr("transform", function (d) {
+                    return "translate(" + path.centroid(d) + ")";
+                })
+                .attr("data-id", function (d) {
+                    return d.id;
+                })
+                .attr("class", function (d) {
+                    return d.properties.type_en;
+                })
+                .text(function (d) {
+                    return d.properties.name;
+                })
+                .on("click", function (d) {
+                    //this.set("activeFeature",d.id);
+                    console.log(this);
+                    this.atlas.setActiveFeature(d);
+                });
+
             //Reset the zoom to outline
-            reset();
-            
+            zoomExtents();
 
         },
 
@@ -138,9 +173,9 @@ var ESC_KEY = 27;
 
     });
 
- 
-    
-    
+
+
+
     //
     //VIEWS
     //The main wikiatlas view
@@ -189,9 +224,9 @@ var ESC_KEY = 27;
                 .attr("class", "background")
                 .attr("width", this.width)
                 .attr("height", this.height)
-                .on("click", reset);
+                .on("click", zoomExtents);
 
-            g = svgMap.append("g");
+            g = svgMap.append("g").attr("class", "canvas");
             svgMap = g;
 
         },
@@ -203,16 +238,23 @@ var ESC_KEY = 27;
                 this.$input.val('');
             }
         },
-            
+
+        //Sets the item as the active object
+        setActiveFeature: function (d) {
+            this.model.set("activeId", d.id);
+            console.log(this);
+            clicked(d);
+        }
+
 
     });
 
-    wikiatlas.$mapTitle = Backbone.View.extend({
+    //The map view
+    wikiatlas.svgMap = Backbone.View.extend({
 
         // Target element
-        el: '#wikiatlas-title',
+        el: '#wikiatlas-map svg',
         template: _.template("<%= mapTitle %><small><%= mapDate %></small>")
-
 
     });
 
@@ -225,52 +267,55 @@ var ESC_KEY = 27;
         .scale(1)
         .scaleExtent([1, 8])
         .on("zoom", zoomed);
-    
+
     //Returns transformation parameters for a feature
-    function transform(d){
+    function getTransform(d) {
         var bounds = path.bounds(d),
             dx = bounds[1][0] - bounds[0][0],
             dy = bounds[1][1] - bounds[0][1],
             x = (bounds[0][0] + bounds[1][0]) / 2,
             y = (bounds[0][1] + bounds[1][1]) / 2;
-            var t={};
-            t.scale = .9 / Math.max(dx / width, dy / height);
-            t.translate = [width / 2 - t.scale * x, height / 2 - t.scale * y];
-            
-            return t;
-        }
+        var t = {};
+        t.scale = .9 / Math.max(dx / width, dy / height);
+        t.translate = [width / 2 - t.scale * x, height / 2 - t.scale * y];
+
+        return t;
+    }
 
     //Sets active class and trigger animation
     function clicked(d) {
-        console.log(d);
-        if (active.node() === this) return reset();
+        console.log(this);
+        if (active.node() === this) return zoomExtents();
         active.classed("active", false);
-        active = d3.select(this).classed("active", true);
+        active = d3.select(this).classed("active", true).moveToFront();
 
-        t = transform(d);
 
+        //Calculate translate and scale for the feature
+        t = getTransform(d);
         svgMap.transition()
             .duration(750)
             .call(zoom.translate(t.translate).scale(t.scale).event);
     }
 
-    //Scale style with zoom
+    //Scale canvas styles on zoom
     function zoomed() {
+        
         svgMap.style("stroke-width", 1.5 / d3.event.scale + "px");
+        svgMap.style("font-size", 1 / d3.event.scale + "em");
         svgMap.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     }
 
     // If the drag behavior prevents the default click,
     // also stop propagation so we don’t click-to-zoom.
-    function reset() {
+    function zoomExtents() {
         active.classed("active", false);
         active = d3.select(null);
-        
-                    b = path.bounds(d3.select(".outline").datum());
-            s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-            t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
-            console.log(b);
+        d3.select(".mesh").moveToFront();
 
+        b = path.bounds(d3.select(".outline").datum());
+        s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+        t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+        console.log(b);
 
         svgMap.transition()
             .duration(750)
@@ -280,6 +325,14 @@ var ESC_KEY = 27;
     function stopped() {
         if (d3.event.defaultPrevented) d3.event.stopPropagation();
     }
+
+    //Move a d3 selection to the top of the svg dom for rendering
+    //http://tributary.io/tributary/3922684
+    d3.selection.prototype.moveToFront = function () {
+        return this.each(function () {
+            this.parentNode.appendChild(this);
+        });
+    };
 
 
 
