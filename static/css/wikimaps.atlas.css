@@ -18,28 +18,29 @@
     fill-opacity: .8;
 }
 .feature:hover {
-    fill: yellow;
+    fill:  #ffff9b;
 }
 .feature {
-    fill: #ccc;
+    fill: #ffffda;
     cursor: pointer;
 }
 .feature.active {
-    fill: yellow;
-    stroke: yellow;
+    fill: #ffff9b;
+    stroke: #ffcd9b;
     stroke-width: 0.2px;
 }
 .outline {
     fill: none;
-    stroke: #999;
+    stroke: #646464;
+    stroke-width:0.1px;
     stroke-linecap: round;
     stroke-linejoin: round;
     pointer-events: none;
 }
 .mesh {
     fill: none;
-    stroke: #fff;
-    stroke-width:0.1px;
+    stroke: #646464;
+    stroke-width:0.05px;
     stroke-linecap: round;
     stroke-linejoin: round;
     pointer-events: none;
@@ -52,4 +53,9 @@ text {
     text-anchor: middle;
 /*    cursor: pointer;*/
     opacity: 0.4;
+    pointer-events: none;
+}
+text.active{
+    opacity:1;
+    font-size: 100%;
 }
