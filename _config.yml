@@ -1,6 +1,6 @@
 title: Wikmaps Atlas
-name: "Wikimaps Atlas"
-description: "A Wikimedia Foundation IEG Project"
+name: Wikimaps Atlas
+description: A Wikimedia Foundation IEG Project
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -11,10 +11,8 @@ description: "A Wikimedia Foundation IEG Project"
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
 
+# Where things are   
 
-paginate: 10
-
-url: http://wikimapsatlas.github.io
 
 
 comments :
@@ -25,4 +23,4 @@ comments :
       
 markdown: rdiscount
 permalink: pretty
-pygments: true push
+highlighter: pygments
