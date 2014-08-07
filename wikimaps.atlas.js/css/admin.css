@@ -1,7 +1,7 @@
 
 /* =============================================================================
    Primary styles
-   Author: 
+   Author:
    ========================================================================== */
 body {
   background: #ebebeb;
@@ -93,7 +93,7 @@ h1{
     top: 0px;
     left: 0px;
     width: 150px;
-  }  
+  }
 
   #page .sidebar .ad .info {
     display: block;
@@ -104,7 +104,7 @@ h1{
     top: 0px;
     left: 0px;
     width: 250px;
-  }  
+  }
 
   #page .sidebar .ad .info h4 {
     font-size: 16px;
@@ -129,7 +129,7 @@ h1{
 #page .contributors-stats ul li p {
   font-size: 20px;
   color:#999;
-  font-weight: bold; 
+  font-weight: bold;
   margin: 0px;
   padding: 0px;
 }
@@ -163,8 +163,8 @@ h1{
 #page #contributors-list .podium .base p {
   text-align: left;
   color: #666;
-  font-weight: normal; 
-  font-size: 12px; 
+  font-weight: normal;
+  font-size: 12px;
   margin-left: 10px;
 }
 
@@ -191,14 +191,14 @@ h1{
     padding: 0px;
     top: 0px;
     left: 0px;
- } 
+ }
 
  #page #contributors-list ul.contributors li div.contributor ul {
     list-style: none;
     margin: 0px;
     padding: 0px;
 
- } 
+ }
 
  #page #contributors-list ul.contributors li div.contributor ul li {
     display: block;
