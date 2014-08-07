@@ -10,7 +10,7 @@ description: "A Wikimedia Foundation IEG Project"
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://planemad.github.io/wikimaps-atlas
+
 
 paginate: 10
 
