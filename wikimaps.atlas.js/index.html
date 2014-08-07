@@ -22,6 +22,28 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <script data-main="js/main" src="js/libs/require/require.js"></script>
+
+    <style>
+        body {
+            margin: 20px;
+            padding: 0;
+        }
+        .wikiatlas {
+            background-color: #eee;
+            margin: 10px;
+            display: inline-block;
+        }
+        .small {
+            width: 100px;
+            height: 100px;
+        }
+        .large {
+            width: 600px;
+            height: 400px;
+        }
+        <!--Map styles-->
+
+    </style>
 </head>
 
 <body>
@@ -29,10 +51,43 @@
     <article>
         <h1>Atlas Player Demo</h1>
         <p>Wikiatlas is an interactive frontend for browsing the wikimaps data library. To create an atlas view, one needs to specify the map location, a data theme and a map date. Additional data layers can be overlaid on this basemap. The styling of ana of the data layers can be customized using cartocss. Every data layer can also have custom interactivty using events.</p>
-        <div id="wikiatlas" style="width:100px;height:100px;" data-wikiatlas></div>
+        <!--Player demo-->
+        <div id="wikiatlas" class="wikiatlas large" data-wikiatlas></div>
         <p>Wiki Atlas can also embed svg maps into atlas frames at multiple locations in the documents</p>
-        <div id="wikiatlas-map-india-states" style="width:100px;height:100px;"></div>
+        <!--Embed demo-->
+        <div id="wikiatlas-map-india-states" class="wikiatlas small"></div>
+        <div id="wikiatlas-map-india-states" class="wikiatlas small"></div>
     </article>
+
+    <!-- Set wikiatlas objects and construct the maps  -->
+    <script>
+        var map;
+        mapboxgl.accessToken = '<your access token here>';
+        mapboxgl.util.getJSON('https://www.mapbox.com/mapbox-gl-styles/styles/outdoors-v4.json', function (err, style) {
+            if (err) throw err;
+
+            // Set the global transition property in the stylesheet
+            style.transition = {
+                duration: 1000, // 1 second
+                delay: 0
+            };
+
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: style,
+                center: [33.973142, 23.796679],
+                zoom: 3
+            });
+
+            window.setInterval(function () {
+                if (map.style.classes.night) {
+                    map.style.removeClass('night');
+                } else {
+                    map.style.addClass('night');
+                }
+            }, 2000);
+        });
+    </script>
 
 </body>
 
