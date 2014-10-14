@@ -1,8 +1,7 @@
 ---
-title: Wikiatlas Beta 
-layout: atlas 
+title: Wikiatlas Demo
+layout: default
 ---
-
 <link rel="stylesheet" href="{{ site.baseurl }}/static/css/wikimaps.atlas.css">
 
 
@@ -42,30 +41,23 @@ layout: atlas
         mapLocation: "India",
         mapTheme: "Administrative",
         mapDate: "2014",
-        mapsetID: "AFG.adm1"
+        mapsetID: "IND.adm1"
     }
 
-    atlasOptions = [
-        {
-            map: {
-                id: "adm.AFG.adm1.2014", //Shortcut mapset id, overrides the verbose options below
-                type: "Administrative", // Map of
-                theme: "States", // in
-                location: "India",
-                date: "2014",
-                id: "AFG.adm1",
-                style: {
-                    name: "default",
-                    mapCSS: [
-            ".Province {font-size:15%}",
-            ".State {font-size:5%}"
-            ]
-                }
+    atlasOptions = {
+            id: "AFG.adm.2014", //Shortcut mapset id, overrides the verbose options below
+            set: "admin", // Map of
+            theme: "States", // in
+            location: "AFG",
+            date: "2014",
+            id: "AFG.adm1",
+            style: {
+                name: "default",
+                mapCSS:".Province{font-size:15%} .State {font-size:5%}"
             }
 
 
-    },
-                   ]
+    }
 
     /** Using mapsetID
     

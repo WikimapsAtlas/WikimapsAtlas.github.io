@@ -13,14 +13,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title></title>
+    <title>Wikimaps Atlas Development Demo</title>
     <meta name="description" content="">
     <meta name="author" content="Wikiatlas Team">
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="stylesheet" href="css/styles.css">
+    <!--Wikiatlas stylesheet-->
+    <link rel="stylesheet" href="css/main.css">
 
+    <!--Load the main js with the required dmodule ependencies-->
     <script data-main="js/main" src="js/libs/require/require.js"></script>
 
     <style>
@@ -42,7 +44,6 @@
             height: 400px;
         }
         <!--Map styles-->
-
     </style>
 </head>
 
@@ -61,32 +62,7 @@
 
     <!-- Set wikiatlas objects and construct the maps  -->
     <script>
-        var map;
-        mapboxgl.accessToken = '<your access token here>';
-        mapboxgl.util.getJSON('https://www.mapbox.com/mapbox-gl-styles/styles/outdoors-v4.json', function (err, style) {
-            if (err) throw err;
-
-            // Set the global transition property in the stylesheet
-            style.transition = {
-                duration: 1000, // 1 second
-                delay: 0
-            };
-
-            map = new mapboxgl.Map({
-                container: 'map',
-                style: style,
-                center: [33.973142, 23.796679],
-                zoom: 3
-            });
-
-            window.setInterval(function () {
-                if (map.style.classes.night) {
-                    map.style.removeClass('night');
-                } else {
-                    map.style.addClass('night');
-                }
-            }, 2000);
-        });
+      
     </script>
 
 </body>

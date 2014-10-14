@@ -1,16 +1,13 @@
-// Filename: app.js
+// Wikimaps Atlas Apps
 define([
-  'jquery', 
-  'underscore', 
+  'jquery',
+  'underscore',
   'backbone',
+  'd3',
+  'topojson',
   'router', // Request router.js
-], function($, _, Backbone, Router){
-  var initialize = function(){
-    // Pass in our Router module and call it's initialize function
-    Router.initialize();
-  };
-
-  return { 
-    initialize: initialize
-  };
+], function ($, _, Backbone, d3, topojson) {
+    
+    console.log("test");
+    
 });

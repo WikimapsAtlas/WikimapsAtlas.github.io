@@ -11,6 +11,19 @@
  *
  */
 
+$(document).ready(function () {
+
+    // d3 extension
+    //Render a d3 selection to the top of the SVG
+    //http://tributary.io/tributary/3922684
+    d3.selection.prototype.moveToFront = function () {
+        return this.each(function () {
+            this.parentNode.appendChild(this);
+        });
+    };
+
+});
+
 //Global app backbone
 var wikiatlas = wikiatlas || {};
 
@@ -154,7 +167,7 @@ var ESC_KEY = 27;
                 })
                 .on("click", function (d) {
                     //this.set("activeFeature",d.id);
-                    console.log(this);
+                    console.log("test" + this);
                     this.atlas.setActiveFeature(d);
                 });
 
@@ -258,10 +271,11 @@ var ESC_KEY = 27;
 
     });
 
+
     //D3 click and zoom animation
     //http://bl.ocks.org/mbostock/9656675
 
-    //Zoom behaviour
+    //Define zoom behavior
     var zoom = d3.behavior.zoom()
         .translate([0, 0])
         .scale(1)
@@ -282,9 +296,11 @@ var ESC_KEY = 27;
         return t;
     }
 
-    //Sets active class and trigger animation
+    //Do this during any map click
     function clicked(d) {
         console.log(this);
+
+        //Sets active class and trigger animation
         if (active.node() === this) return zoomExtents();
         active.classed("active", false);
         active = d3.select(this).classed("active", true).moveToFront();
@@ -297,26 +313,33 @@ var ESC_KEY = 27;
             .call(zoom.translate(t.translate).scale(t.scale).event);
     }
 
-    //Scale canvas styles on zoom
+    //Do this during any map zoom
     function zoomed() {
-        
+
+        //Scale canvas styles on zoom
         svgMap.style("stroke-width", 1.5 / d3.event.scale + "px");
         svgMap.style("font-size", 1 / d3.event.scale + "em");
         svgMap.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+
     }
 
-    // If the drag behavior prevents the default click,
-    // also stop propagation so we don’t click-to-zoom.
+
+    //Zoom to map extents
     function zoomExtents() {
+        // If the drag behavior prevents the default click,
+        // also stop propagation so we don’t click-to-zoom.
         active.classed("active", false);
         active = d3.select(null);
+
         d3.select(".mesh").moveToFront();
 
+        //Calculate bounds
         b = path.bounds(d3.select(".outline").datum());
         s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
         t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
         console.log(b);
 
+        //Animate zoom
         svgMap.transition()
             .duration(750)
             .call(zoom.translate(t).scale(s).event);
@@ -326,13 +349,7 @@ var ESC_KEY = 27;
         if (d3.event.defaultPrevented) d3.event.stopPropagation();
     }
 
-    //Move a d3 selection to the top of the svg dom for rendering
-    //http://tributary.io/tributary/3922684
-    d3.selection.prototype.moveToFront = function () {
-        return this.each(function () {
-            this.parentNode.appendChild(this);
-        });
-    };
+
 
 
 
