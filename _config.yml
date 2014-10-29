@@ -1,6 +1,7 @@
 title: Wikmaps Atlas
 name: Wikimaps Atlas
 description: A Wikimedia Foundation IEG Project
+baseurl: ""
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
