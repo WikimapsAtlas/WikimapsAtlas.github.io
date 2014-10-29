@@ -1,0 +1,17 @@
+{
+  "name": "backbone-localstorage",
+  "version": "0.3.2",
+  "homepage": "https://github.com/moorinteractive/backbone-localstorage",
+  "authors": [
+    "R. Moorman <rob@moori.nl>"
+  ],
+  "description": "Backbone localStorage",
+  "main": "backbone-localstorage.js",
+  "keywords": [
+    "backbone",
+    "local",
+    "storage",
+    "cache"
+  ],
+  "license": "MIT"
+}

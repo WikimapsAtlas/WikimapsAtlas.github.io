@@ -1,0 +1,30 @@
+{
+  "name": "backbone-localstorage",
+  "version": "0.3.2",
+  "description": "Backbone localStorage",
+  "main": "backbone-localstorage.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moorinteractive/backbone-localstorage.git"
+  },
+  "scripts": {
+      "test": "grunt test"
+  },
+  "keywords": [
+    "backbone",
+    "local",
+    "storage",
+    "cache"
+  ],
+  "author": "R. Moorman <rob@moori.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moorinteractive/backbone-localstorage/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.11",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-qunit": "~0.3.0"
+  }
+}

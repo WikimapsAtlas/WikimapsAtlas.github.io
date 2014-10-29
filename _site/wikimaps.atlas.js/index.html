@@ -1,0 +1,70 @@
+<!-- wikimaps.atlas.js Development Index -->
+<!-- Built with backbonejs and organized with requirejs-->
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Wikimaps Atlas Development Demo</title>
+    <meta name="description" content="">
+    <meta name="author" content="Wikiatlas Team">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!--Wikiatlas stylesheet-->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!--Load the main js with the required dmodule ependencies-->
+    <script data-main="js/main" src="js/libs/require/require.js"></script>
+
+    <style>
+        body {
+            margin: 20px;
+            padding: 0;
+        }
+        .wikiatlas {
+            background-color: #eee;
+            margin: 10px;
+            display: inline-block;
+        }
+        .small {
+            width: 100px;
+            height: 100px;
+        }
+        .large {
+            width: 600px;
+            height: 400px;
+        }
+        <!--Map styles-->
+    </style>
+</head>
+
+<body>
+
+    <article>
+        <h1>Atlas Player Demo</h1>
+        <p>Wikiatlas is an interactive frontend for browsing the wikimaps data library. To create an atlas view, one needs to specify the map location, a data theme and a map date. Additional data layers can be overlaid on this basemap. The styling of ana of the data layers can be customized using cartocss. Every data layer can also have custom interactivty using events.</p>
+        <!--Player demo-->
+        <div id="wikiatlas" class="wikiatlas large" data-wikiatlas></div>
+        <p>Wiki Atlas can also embed svg maps into atlas frames at multiple locations in the documents</p>
+        <!--Embed demo-->
+        <div id="wikiatlas-map-india-states" class="wikiatlas small"></div>
+        <div id="wikiatlas-map-india-states" class="wikiatlas small"></div>
+    </article>
+
+    <!-- Set wikiatlas objects and construct the maps  -->
+    <script>
+      
+    </script>
+
+</body>
+
+</html>

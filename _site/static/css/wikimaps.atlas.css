@@ -1,0 +1,61 @@
+.background {
+    fill: none;
+    pointer-events: all;
+    stroke-width:1px;
+    stroke:#ccc;
+}
+.boundary {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+.feature--canton {
+    fill: #bbb;
+}
+.feature--lake {
+    fill: steelblue;
+    fill-opacity: .8;
+}
+.feature:hover {
+    fill:  #ffff9b;
+}
+.feature {
+    fill: #ffffda;
+    cursor: pointer;
+}
+.feature.active {
+    fill: #ffff9b;
+    stroke: #ffcd9b;
+    stroke-width: 0.2px;
+}
+.outline {
+    fill: none;
+    stroke: #646464;
+    stroke-width:0.1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+.mesh {
+    fill: none;
+    stroke: #646464;
+    stroke-width:0.05px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+/* Typography */
+
+text {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 90%;
+    text-anchor: middle;
+/*    cursor: pointer;*/
+    opacity: 0.4;
+    pointer-events: none;
+}
+text.active{
+    opacity:1;
+    font-size: 100%;
+}
