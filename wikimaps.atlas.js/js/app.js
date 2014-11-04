@@ -8,6 +8,6 @@ define([
   'router', // Request router.js
 ], function ($, _, Backbone, d3, topojson) {
     
-    console.log("test");
+    console.log(d3);
     
 });

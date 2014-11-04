@@ -76,33 +76,7 @@
 
     <script>
         
-        // DEMO JAVASCRIPT
-        // Renders demo inline javascripts in the html page  
-        // Based on http://stackoverflow.com/questions/8946715/lazy-loading-javascript-and-inline-javascript
         
-        $(document).ready(function () {
-            var
-                _scripts = document.getElementsByTagName("script"),
-                _doc = document,
-                _txt = "demo/javascript";
-
-            for (var i = 0, l = _scripts.length; i < l; i++) {
-                var _type = _scripts[i].getAttribute("type");
-                if (_type && _type.toLowerCase() == _txt)
-                    _scripts[i].parentNode.replaceChild((function (sB) {
-                        var _s = _doc.createElement('script');
-                        _s.type = 'text/javascript';
-                        _s.innerHTML = sB.innerHTML;
-
-                        return _s;
-                    })(_scripts[i]), _scripts[i]);
-            }
-
-            $("[type='example/javascript']").each(function () {
-                $(this).after("<pre>" + $(this).html() + "</pre>")
-            });
-
-        });
     </script>
 
 </body>

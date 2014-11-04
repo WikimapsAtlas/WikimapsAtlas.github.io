@@ -9,11 +9,15 @@ require.config({
         backbone: 'libs/backbone/backbone-min',
         d3: 'libs/d3/d3.min',
         topojson: 'libs/d3/topojson',
+        demoscript: 'libs/demoscript',
         templates: '../templates'
     },
     shim: {
         "topojson": {
             deps: ["d3"]
+        },
+        "demoscript": {
+            deps: ["jquery"]
         }
     }
 
