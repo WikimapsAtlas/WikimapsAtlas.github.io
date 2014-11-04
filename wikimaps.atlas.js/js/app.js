@@ -5,9 +5,16 @@ define([
   'backbone',
   'd3',
   'topojson',
-  'router', // Request router.js
+  'router' // Request router.js
 ], function ($, _, Backbone, d3, topojson) {
     
-    console.log(d3);
+    
+    return {
+        initialize: function() {
+            Backbone.history.start();
+            
+            console.log(topojson);
+        }
+    };
     
 });

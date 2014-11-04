@@ -1,7 +1,11 @@
 // Wikimaps Atlas JS Master File
 // Author: Arun Ganesh <arun.planemad@gmail.com>
 
-// Configure requirejs for third party dependencies
+// Written using Asynchronous Module Definition (AMD) and Backbone
+// https://github.com/amdjs/amdjs-api/wiki/AMD
+// Based on https://github.com/dzejkej/modular-backbone/blob/master/
+
+// Third party dependency configuration
 require.config({
     paths: {
         jquery: 'libs/jquery/jquery-min',
@@ -20,16 +24,12 @@ require.config({
             deps: ["jquery"]
         }
     }
-
 });
 
-// Dependency modules
+// Load our app module and pass it to our definition function
 require([
-  // Load our app module and pass it to our definition function
-  'app',
-
-], function (App) {
-    // The "app" dependency is passed in as "App"
-    // Again, the other dependencies passed in are not "AMD" therefore don't pass a parameter to this function
-    App.initialize();
+  'app'
+], function (app) {
+    // Initialize the app once loaded
+    app.initialize();
 });
