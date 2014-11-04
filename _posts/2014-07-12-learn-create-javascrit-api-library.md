@@ -13,6 +13,7 @@ title: Designing a javascript API for a beginner
 * [Organizing backbone using modules with requirejs](http://backbonetutorials.com/organizing-backbone-using-modules/)
 * [Modular backbone app](https://github.com/thomasdavis/backbonetutorials/tree/gh-pages/examples/modular-backbone)
 * [Requirejs fundamentals](http://blogs.telerik.com/kendoui/posts/13-05-08/requirejs-fundamentals)
+* [Introduction to Requirejs](http://javascriptplayground.com/blog/2012/07/requirejs-amd-tutorial-introduction/)
 
 ## Books
 
