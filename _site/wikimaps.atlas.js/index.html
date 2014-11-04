@@ -53,7 +53,19 @@
         <h1>Atlas Player Demo</h1>
         <p>Wikiatlas is an interactive frontend for browsing the wikimaps data library. To create an atlas view, one needs to specify the map location, a data theme and a map date. Additional data layers can be overlaid on this basemap. The styling of ana of the data layers can be customized using cartocss. Every data layer can also have custom interactivty using events.</p>
         <!--Player demo-->
+        <script type="demo/javascript">
+            $("div1");
+        </script>
+        <script type="demo/javascript">
+            $("div2");
+        </script>
+
         <div id="wikiatlas" class="wikiatlas large" data-wikiatlas></div>
+
+        <script type="demo/javascript">
+            $("div");
+        </script>
+
         <p>Wiki Atlas can also embed svg maps into atlas frames at multiple locations in the documents</p>
         <!--Embed demo-->
         <div id="wikiatlas-map-india-states" class="wikiatlas small"></div>
@@ -61,8 +73,36 @@
     </article>
 
     <!-- Set wikiatlas objects and construct the maps  -->
+
     <script>
-      
+        
+        // DEMO JAVASCRIPT
+        // Renders demo inline javascripts in the html page  
+        // Based on http://stackoverflow.com/questions/8946715/lazy-loading-javascript-and-inline-javascript
+        
+        $(document).ready(function () {
+            var
+                _scripts = document.getElementsByTagName("script"),
+                _doc = document,
+                _txt = "demo/javascript";
+
+            for (var i = 0, l = _scripts.length; i < l; i++) {
+                var _type = _scripts[i].getAttribute("type");
+                if (_type && _type.toLowerCase() == _txt)
+                    _scripts[i].parentNode.replaceChild((function (sB) {
+                        var _s = _doc.createElement('script');
+                        _s.type = 'text/javascript';
+                        _s.innerHTML = sB.innerHTML;
+
+                        return _s;
+                    })(_scripts[i]), _scripts[i]);
+            }
+
+            $("[type='example/javascript']").each(function () {
+                $(this).after("<pre>" + $(this).html() + "</pre>")
+            });
+
+        });
     </script>
 
 </body>
