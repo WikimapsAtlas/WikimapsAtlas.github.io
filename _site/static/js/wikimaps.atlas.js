@@ -45,6 +45,7 @@ var ESC_KEY = 27;
 
         //Extend default settings using custom options
         defaults: {
+            mapContainer: "wikiatlas-map",
             mapDate: "2014",
             mapLocation: "The World",
             mapsetID: "W0",
