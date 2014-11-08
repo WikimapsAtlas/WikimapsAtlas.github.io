@@ -45,17 +45,24 @@ var ESC_KEY = 27;
 
         //Extend default settings using custom options
         defaults: {
-            mapContainer: "wikiatlas-map",
+            atlas: "World Atlas",
+            theme: "Political",
+            html: {
+                container : "wikiatlas-map",
+                width : "500px",
+                height : "200px"
+            },
             mapDate: "2014",
             mapLocation: "The World",
             mapsetID: "W0",
-            mapTheme: "Administrative",
             view: "Globe",
             EPSG: "3857"
         },
 
         // Constructor
         initialize: function () {
+
+            console.log("Initializing the Atlas model using: ",this.defaults);
 
             //Setup a new atlas view
             this.atlas = new wikiatlas.Atlas();
@@ -192,7 +199,7 @@ var ESC_KEY = 27;
 
     //
     //VIEWS
-    //The main wikiatlas view
+    //The d3 atlas view
     wikiatlas.Atlas = Backbone.View.extend({
 
         // Target element

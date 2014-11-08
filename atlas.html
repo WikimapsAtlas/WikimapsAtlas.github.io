@@ -2,6 +2,7 @@
 title: Wikiatlas Demo
 layout: default
 ---
+
 <link rel="stylesheet" href="{{ site.baseurl }}/static/css/wikimaps.atlas.css">
 
 
@@ -10,14 +11,15 @@ layout: default
 <div id="wikiatlas">
 
     <!-- Header -->
-    <div id="wikiatlas-titlebar">
+    <header>
 
-        <h2 id="wikiatlas-title" class="left">
-        </h2>
+        <h2>World Atlas <span class="subheader">W0</span></h2>
+        <h3>India <small>Political Map</small> <span class="right subheader">1:2300</span></h3>
+        <h4>Republic of India</h4>
 
         <h2 class="subheader right"><input id="wikiatlas-search" placeholder="Find a place"></h2>
 
-    </div>
+    </header>
 
     <!-- Content -->
     <div id="wikiatlas-map"></div>
@@ -41,23 +43,23 @@ layout: default
         mapLocation: "India",
         mapTheme: "Administrative",
         mapDate: "2014",
-        mapsetID: "IND.adm1"
+        mapsetID: "RUS.adm1"
     }
 
-//    atlasOptions = {
-//            id: "AFG.adm.2014", //Shortcut mapset id, overrides the verbose options below
-//            set: "admin", // Map of
-//            theme: "States", // in
-//            location: "AFG",
-//            date: "2014",
-//            id: "AFG.adm1",
-//            style: {
-//                name: "default",
-//                mapCSS:".Province{font-size:15%} .State {font-size:5%}"
-//            }
-//
-//
-//    }
+    //    atlasOptions = {
+    //            id: "AFG.adm.2014", //Shortcut mapset id, overrides the verbose options below
+    //            set: "admin", // Map of
+    //            theme: "States", // in
+    //            location: "AFG",
+    //            date: "2014",
+    //            id: "AFG.adm1",
+    //            style: {
+    //                name: "default",
+    //                mapCSS:".Province{font-size:15%} .State {font-size:5%}"
+    //            }
+    //
+    //
+    //    }
 
     /** Using mapsetID
     
