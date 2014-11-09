@@ -1,24 +1,29 @@
 /* Markup */
+#wikiatlas header h2,#wikiatlas header h3,#wikiatlas header h3 .subheader,#wikiatlas header h4{
+    line-height: 1;
+    margin: 0;
+}
 #wikiatlas header h2{
     font-size: 20px;
-    line-height:1;
     color: red;
-    margin:0px;
 }
 #wikiatlas header h3{
     font-size: 40px;
-    line-height:1;
     text-transform: uppercase;
-    margin:0px;
 }
 #wikiatlas header h3 small{
     text-transform: capitalize;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 15px;
 }
 #wikiatlas header h4{
     font-size: 20px;
-    line-height:1;
-    margin:0px;
 }
+#wikiatlas header h4 input{
+    border:none;
+}
+
 /* Map Carto */
 .background {
     fill: none;
