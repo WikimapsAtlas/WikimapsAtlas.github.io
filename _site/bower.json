@@ -6,12 +6,21 @@
     "planemad <arun.planemad@gmail.com>"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "description": "An interactive atlas for the world",
+  "keywords": [
+    "d3",
+    "wiki",
+    "atlas"
+  ],
+    "dependencies": {
+    "jquery": "#latest",
+    "d3": "#latest"
+  }
 }
