@@ -19,7 +19,7 @@
     <!-- Relative path calculator -->
     {% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
 {% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
-     
+
     <link rel="stylesheet" href="{{ site.baseurl }}/static/bower_components/foundation/css/normalize.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/static/bower_components/foundation/css/foundation.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/static/css/main.css">
@@ -28,7 +28,7 @@
     <script>
         window.jQuery || document.write('<script src="{{ site.baseurl }}/static/bower_components/jquery/dist/jquery.min.js"><\/script>')
     </script>
-    
+
 </head>
 
 <body>
@@ -56,14 +56,17 @@
                 <ul class="right">
                     <li>
                         <a href="https://twitter.com/WikiAtlas"><i class="fi-social-twitter"></i></a>
-                        
+
                     </li>
                 </ul>
 
                 <!-- Left Nav Section -->
                 <ul class="left">
                     <li>
-                        <a href="{{ site.baseurl }}/atlas">Demo</a>
+                        <a href="{{ site.baseurl }}/atlas">Atlas</a>
+                    </li>
+                    <li>
+                        <a href="{{ site.baseurl }}/map">Map Demo</a>
                     </li>
                     <li>
                         <a href="{{ site.baseurl }}/project">Project</a>
