@@ -1,5 +1,5 @@
 #usage:
-#{% loop_directory directory:images iterator:image filter:*.jpg sort:descending %}
+#{% loop_directory directory:folder iterator:image filter:*.jpg sort:descending %}
 #   <img src="{{ image }}" />
 #{% endloop_directory %}
 
@@ -16,12 +16,14 @@ module Jekyll
             @attributes['iterator'] = 'item';
             @attributes['filter'] = 'item';
             @attributes['sort'] = 'ascending';
-
+            @attributes['path'] = 'ascending';
+            
             # Parse parameters
             if markup =~ Syntax
                 markup.scan(Liquid::TagAttributes) do |key, value|
                     @attributes[key] = value
                 end
+
             else
                 raise SyntaxError.new("Bad options given to 'loop_directory' plugin.")
             end
@@ -36,15 +38,15 @@ module Jekyll
         def render(context)
             context.registers[:loop_directory] ||= Hash.new(0)
 
-            images = Dir.glob(File.join(@attributes['directory'], @attributes['filter']))
+            folder = Dir.glob(File.join(@attributes['directory'], @attributes['filter']))
 
             if @attributes['sort'].casecmp( "descending" ) == 0
                 # Find files and sort them reverse-lexically. This means
                 # that files whose names begin with YYYYMMDD are sorted newest first.
-                images.sort! {|x,y| y <=> x }
+                folder.sort! {|x,y| y <=> x }
             else
                 # sort normally in ascending order
-                images.sort!
+                folder.sort!
             end
 
             result = []
@@ -53,13 +55,13 @@ module Jekyll
 
 
                 # remove filename extension
-                images.each { |pathname|
+                folder.each { |pathname|
                   context[@attributes['iterator']] = File.basename(pathname, @attributes['filter'].sub('*', ''))
                   result << render_all(@nodelist, context)
                 }
 
                 # return pathname
-                # images.each_with_index do |item, index|
+                # folder.each_with_index do |item, index|
                     # context[@attributes['iterator']] = item
                     # result << render_all(@nodelist, context)
                 # end

@@ -8,8 +8,8 @@ layout: default
 
 
 
-{% loop_directory directory:atlas iterator:image filter:*.topojson sort:descending %}
-   <img src="{{ image }}" />
+{% loop_directory directory:data/admin iterator:file filter:* sort:descending %}
+   <a href="../data/admin/{{ file }}/" />{{file}}</a>
 {% endloop_directory %}
 
 
