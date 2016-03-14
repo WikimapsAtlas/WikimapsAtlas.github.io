@@ -38,8 +38,6 @@ module Jekyll
         def render(context)
             context.registers[:loop_directory] ||= Hash.new(0)
 
-            current_post_path = File.join(context.registers[:page]["path"].slice(1..-1),"thumb/*")
-
             # folder = Dir.glob('data/admin/India/thumb/*')
             folder = Dir.glob(File.join(context.registers[:page]["url"].slice(1..-1),@attributes['filter']))
 
