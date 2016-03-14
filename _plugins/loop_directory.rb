@@ -62,6 +62,7 @@ module Jekyll
                 # remove filename extension
                 folder.each { |pathname|
                   context[@attributes['iterator']] = File.basename(pathname, @attributes['filter'].sub('*', ''))
+                  # context[@attributes['iterator']] = pathname
                   result << render_all(@nodelist, context)
                 }
 
