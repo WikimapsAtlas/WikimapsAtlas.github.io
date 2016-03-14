@@ -17,7 +17,7 @@ module Jekyll
             @attributes['filter'] = 'item';
             @attributes['sort'] = 'ascending';
             @attributes['path'] = 'ascending';
-            
+
             # Parse parameters
             if markup =~ Syntax
                 markup.scan(Liquid::TagAttributes) do |key, value|
@@ -38,7 +38,12 @@ module Jekyll
         def render(context)
             context.registers[:loop_directory] ||= Hash.new(0)
 
-            folder = Dir.glob(File.join(@attributes['directory'], @attributes['filter']))
+            current_post_path = File.join(context.registers[:page]["path"].slice(1..-1),"thumb/*")
+
+            # folder = Dir.glob('data/admin/India/thumb/*')
+            folder = Dir.glob(File.join(context.registers[:page]["url"].slice(1..-1),@attributes['filter']))
+
+
 
             if @attributes['sort'].casecmp( "descending" ) == 0
                 # Find files and sort them reverse-lexically. This means

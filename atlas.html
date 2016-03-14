@@ -8,11 +8,6 @@ layout: default
 
 
 
-{% loop_directory directory:data/admin iterator:file filter:* sort:descending %}
-   <a href="../data/admin/{{ file }}/" />{{file}}</a>
-{% endloop_directory %}
-
-
 <!-- JS Dependencies -->
 <script src="{{ site.baseurl }}/static/bower_components/foundation/js/foundation.min.js"></script>
 <script src="{{ site.baseurl }}/static/bower_components/underscore/underscore.js"></script>
